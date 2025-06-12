@@ -6,7 +6,10 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "generate-api": "node scripts/generate-api-types.js",
+    "generate-api:watch": "nodemon --watch 'http://localhost:5015/swagger/v1/swagger.json' --exec 'npm run generate-api'",
+    "generate-api:raw": "openapi-typescript-codegen --input http://localhost:5015/swagger/v1/swagger.json --output ../api-generated --client axios"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -32,6 +35,8 @@
     "@types/react-dom": "^19.1.2",
     "@types/react-router-dom": "^5.3.3",
     "autoprefixer": "^10.4.21",
+    "axios": "^1.7.2",
+    "openapi-typescript-codegen": "^0.29.0",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",
